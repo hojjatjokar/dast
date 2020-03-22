@@ -19,10 +19,34 @@ class SinglyLinkedList {
       this.head = node;
       this.tail = node;
     } else {
-      this.tail = node;
       this.tail.next = node;
+      this.tail = node;
     }
 
     this.length = this.length + 1;
+    return this;
+  }
+
+  pop() {
+    if (!this.tail) {
+      return undefined;
+    }
+    const result = this.tail;
+    let temp = this.head;
+
+    while (temp.next && temp.next !== result) {
+      temp = temp.next;
+    }
+
+    temp.next = null;
+    this.tail = temp;
+    this.length--;
+
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return result;
   }
 }
