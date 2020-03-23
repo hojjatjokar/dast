@@ -31,6 +31,7 @@ class SinglyLinkedList {
     if (!this.tail) {
       return undefined;
     }
+
     const result = this.tail;
     let temp = this.head;
 
@@ -46,6 +47,22 @@ class SinglyLinkedList {
       this.head = null;
       this.tail = null;
     }
+
+    return result;
+  }
+
+  unshift() {
+    if (!this.head) {
+      return;
+    }
+
+    const result = this.head;
+
+    if (this.head.next) {
+      this.head = this.head.next;
+    }
+
+    this.length--;
 
     return result;
   }
