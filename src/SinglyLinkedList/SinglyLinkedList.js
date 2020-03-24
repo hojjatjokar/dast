@@ -51,7 +51,7 @@ class SinglyLinkedList {
     return result;
   }
 
-  unshift() {
+  shift() {
     if (!this.head) {
       return;
     }
@@ -65,5 +65,14 @@ class SinglyLinkedList {
     this.length--;
 
     return result;
+  }
+
+  unshift(value) {
+    const item = new Node(value);
+    item.next = this.head;
+    this.head = item;
+    this.length++;
+
+    return this;
   }
 }
