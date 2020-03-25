@@ -75,4 +75,30 @@ class SinglyLinkedList {
 
     return this;
   }
+
+  get(i) {
+    if (i >= this.length) {
+      return;
+    }
+    let result = this.head;
+    let counter = 0;
+
+    while (counter < i) {
+      result = result.next;
+      counter++;
+    }
+
+    return result;
+  }
+
+  set(i, value) {
+    const item = this.get(i);
+
+    if (item) {
+      item.value = value;
+      return true;
+    }
+
+    return false;
+  }
 }
