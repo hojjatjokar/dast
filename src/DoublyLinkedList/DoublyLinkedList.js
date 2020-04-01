@@ -108,18 +108,15 @@ class DoublyLinkedList {
 
     return current;
   }
+
+  set(index, value) {
+    const node = this.get(index);
+
+    if (node) {
+      node.value = value;
+      return true;
+    }
+
+    return false;
+  }
 }
-
-const n = new DoublyLinkedList();
-
-n.push(1);
-n.push(2);
-n.push(3);
-n.push(4);
-n.push(5);
-n.push(6);
-n.push(7);
-n.push(8);
-n.push(9);
-
-console.log(n.get(6).value);
