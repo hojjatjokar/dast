@@ -14,7 +14,7 @@ class DoublyLinkedList {
   }
 
   push(value) {
-    if (!value) return;
+    if (typeof value === 'undefined') return;
 
     const node = new Node(value);
 
@@ -118,5 +118,23 @@ class DoublyLinkedList {
     }
 
     return false;
+  }
+
+  insert(value, index) {
+    if (index > this.length || index < 0) return;
+    if (index == 0) return this.unshift(value);
+    if (index == this.length) return this.push(value);
+
+    const newNode = new Node(value);
+    const prevNode = this.get(index - 1);
+    const nextNode = this.get(index);
+
+    prevNode.next = newNode;
+    nextNode.prev = newNode;
+    newNode.next = nextNode;
+
+    this.length++;
+
+    return newNode;
   }
 }
