@@ -25,5 +25,20 @@ class Queue {
     this.size++;
   }
 
-  dequeue() {}
+  dequeue() {
+    if (this.size == 0) return null;
+
+    const result = this.first;
+
+    if (this.size == 1) {
+      this.first = null;
+      this.last = null;
+    } else {
+      this.first = this.first.next;
+    }
+
+    this.size--;
+
+    return result;
+  }
 }
