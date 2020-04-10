@@ -18,5 +18,25 @@ class BinarySearchTree {
       this.root = node;
       return;
     }
+
+    inner(this.root, value);
+
+    function inner(target, value) {
+      if (value === target.value) return this;
+
+      if (value > target.value) {
+        if (target.right === null) {
+          target.right = node;
+          return this;
+        }
+        return inner(target.right, value);
+      } else {
+        if (target.left === null) {
+          target.left = node;
+          return this;
+        }
+        return inner(target.left, value);
+      }
+    }
   }
 }
