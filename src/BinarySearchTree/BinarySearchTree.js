@@ -57,6 +57,30 @@ class BinarySearchTree {
     }
     return check(this.root, value);
   }
+
+  BSF() {
+    const q = [];
+    const result = [];
+
+    let current = this.root;
+    while (current) {
+      result.push(current.value);
+      if (current.left) q.push(current.left);
+      if (current.right) q.push(current.right);
+      current = q.shift();
+    }
+
+    return result;
+  }
 }
 
 const tree = new BinarySearchTree();
+
+tree.insert(10);
+tree.insert(6);
+tree.insert(15);
+tree.insert(3);
+tree.insert(8);
+tree.insert(20);
+
+console.log(tree.BSF());
