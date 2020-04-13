@@ -58,17 +58,32 @@ class BinarySearchTree {
     return check(this.root, value);
   }
 
-  BSF() {
+  BFS() {
     const q = [];
     const result = [];
-
     let current = this.root;
+
     while (current) {
       result.push(current.value);
       if (current.left) q.push(current.left);
       if (current.right) q.push(current.right);
       current = q.shift();
     }
+
+    return result;
+  }
+
+  DFSPreOrder() {
+    const result = [];
+    const current = this.root;
+
+    function traverse(node) {
+      result.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+
+    traverse(current);
 
     return result;
   }
@@ -83,4 +98,4 @@ tree.insert(3);
 tree.insert(8);
 tree.insert(20);
 
-console.log(tree.BSF());
+console.log(tree.DFSPreOrder());
