@@ -87,6 +87,24 @@ class BinarySearchTree {
 
     return result;
   }
+
+  DFSPostOrder() {
+    if (!this.root) return;
+    const result = [];
+
+    function traverse(current) {
+      if (!current) return;
+
+      if (current.left) traverse(current.left);
+      if (current.right) traverse(current.right);
+
+      result.push(current.value);
+    }
+
+    traverse(this.root);
+
+    return result;
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -99,3 +117,5 @@ tree.insert(8);
 tree.insert(20);
 
 console.log(tree.DFSPreOrder());
+console.log(tree.DFSPostOrder());
+// [3,8,6,20,15,10]
