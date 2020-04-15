@@ -105,6 +105,23 @@ class BinarySearchTree {
 
     return result;
   }
+
+  DFSInOrder() {
+    if (!this.root) return;
+    const result = [];
+
+    function traverse(current) {
+      if (!current) return;
+
+      if (current.left) traverse(current.left);
+      result.push(current.value);
+      if (current.right) traverse(current.right);
+    }
+
+    traverse(this.root);
+
+    return result;
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -118,4 +135,4 @@ tree.insert(20);
 
 console.log(tree.DFSPreOrder());
 console.log(tree.DFSPostOrder());
-// [3,8,6,20,15,10]
+console.log(tree.DFSInOrder());
