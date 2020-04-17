@@ -23,22 +23,47 @@ class MaxBinaryHeaps {
       index = parentIndex;
     }
   }
+
+  extractMax() {
+    const max = this.values[0];
+    this.values[0] = this.values.pop();
+
+    this.sinkDown();
+
+    return max;
+  }
+
+  sinkDown() {
+    let index = 0;
+    const element = this.values[index];
+
+    while (true) {
+      let leftIndex = 2 * index + 1;
+      let rightIndex = 2 * index + 2;
+      let leftChild = this.values[leftIndex];
+      let rightChild = this.values[rightIndex];
+      let largest = Math.max(leftChild, rightChild);
+      let largestIndex = largest === leftChild ? leftIndex : rightIndex;
+
+      if (element > largest) break;
+      if (!leftChild && !rightChild) break;
+
+      this.values[index] = largest;
+      this.values[largestIndex] = element;
+      index = largestIndex;
+    }
+  }
 }
 
 let heap = new MaxBinaryHeaps();
 heap.insert(41);
-console.log(heap.values);
 heap.insert(39);
-console.log(heap.values);
 heap.insert(33);
-console.log(heap.values);
 heap.insert(18);
-console.log(heap.values);
 heap.insert(27);
-console.log(heap.values);
 heap.insert(12);
-console.log(heap.values);
 heap.insert(53);
+console.log(heap.extractMax());
 console.log(heap.values);
 
 // [41,39,33,18,27,12]
