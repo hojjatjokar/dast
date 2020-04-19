@@ -21,4 +21,22 @@ class PriorityQueue {
     this.sinkIn();
     return result;
   }
+
+  bubbleUp() {
+    let index = this.values.length - 1;
+    const node = this.values[index];
+
+    while (true) {
+      const parentIndex = Math.floor((index - 1) / 2);
+      const parentNode = this.values[parentIndex];
+
+      if (parentNode && node.priority < parentNode.priority) {
+        this.values[index] = parentNode;
+        this.values[parentIndex] = node;
+        index = parentIndex;
+      } else {
+        break;
+      }
+    }
+  }
 }
