@@ -39,4 +39,50 @@ class PriorityQueue {
       }
     }
   }
+
+  sinkIn() {
+    const node = this.values.pop();
+    let index = 0;
+    this.values.unshift(node);
+    while (true) {
+      const leftIndex = 2 * index + 1;
+      const rightIndex = 2 * index + 2;
+      const leftNode = this.values[leftIndex];
+      const rightNode = this.values[rightIndex];
+      let smallest;
+      let smallestIndex;
+
+      if (leftNode && leftNode.priority < rightNode.priority) {
+        smallest = leftNode;
+        smallestIndex = leftIndex;
+      } else if (rightNode) {
+        smallest = rightNode;
+        smallestIndex = rightIndex;
+      }
+
+      if (!smallest || node.priority < smallest.priority) break;
+
+      this.values[smallestIndex] = node;
+      this.values[index] = smallest;
+      index = smallestIndex;
+    }
+  }
 }
+
+const pq = new PriorityQueue();
+
+pq.enqueue('a', 10);
+
+pq.enqueue('b', 7);
+
+pq.enqueue('c', 4);
+
+pq.enqueue('d', 1);
+
+pq.enqueue('f', 2);
+
+pq.enqueue('g', 6);
+
+console.log(pq.dequeue());
+
+console.log(pq);
