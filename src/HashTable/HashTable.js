@@ -23,4 +23,13 @@ class HashTable {
     }
     this.keyMap[index].push([key, value]);
   }
+
+  get(key) {
+    const hash = this._hash(key);
+
+    if (!this.keyMap[hash]) return null;
+
+    const item = this.keyMap[hash].find((item) => item[0] == key);
+    return item && item[1];
+  }
 }
