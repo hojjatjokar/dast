@@ -32,4 +32,10 @@ class HashTable {
     const item = this.keyMap[hash].find((item) => item[0] == key);
     return item && item[1];
   }
+
+  keys() {
+    return this.keyMap.reduce((acc, curr) => {
+      return acc.concat(curr.map((item) => item[0]));
+    }, []);
+  }
 }
