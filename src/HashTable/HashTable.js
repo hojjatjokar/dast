@@ -38,4 +38,22 @@ class HashTable {
       return acc.concat(curr.map((item) => item[0]));
     }, []);
   }
+
+  values() {
+    return this.keyMap.reduce((acc, curr) => {
+      return [...acc, ...curr.map((item) => item[1])];
+    }, []);
+  }
 }
+
+let ht = new HashTable();
+
+ht.set('hello world', 'goodbye!!');
+ht.set('dogs', 'are cool');
+ht.set('cats', 'are fine');
+ht.set('i loe', 'pizza');
+ht.set('cop', 'afdadf');
+ht.set('i adfa', 'asdfadf');
+ht.set('i love', 'pizza');
+
+console.log(ht.values());
