@@ -44,6 +44,12 @@ class HashTable {
       return [...acc, ...curr.map((item) => item[1])];
     }, []);
   }
+
+  has(key) {
+    const value = this.get(key);
+
+    return !!value;
+  }
 }
 
 let ht = new HashTable();
@@ -56,4 +62,4 @@ ht.set('cop', 'afdadf');
 ht.set('i adfa', 'asdfadf');
 ht.set('i love', 'pizza');
 
-console.log(ht.values());
+console.log(ht.has('i '));
