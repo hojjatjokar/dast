@@ -20,6 +20,14 @@ class Graph {
       (item) => item !== vertex1
     );
   }
+
+  removeVertex(vertex) {
+    const vertexes = Object.keys(this.adjacencyList);
+    vertexes.forEach((key) => {
+      this.removeEdge(key, vertex);
+    });
+    delete this.adjacencyList[vertex];
+  }
 }
 
 const routes = new Graph();
@@ -30,9 +38,11 @@ routes.addVertex('Milan');
 routes.addVertex('Berlin');
 
 routes.addEdge('London', 'Rome');
+routes.addEdge('Rome', 'Milan');
+routes.addEdge('London', 'Milan');
 
 console.log(routes);
 
-routes.removeEdge('London', 'Rome');
+routes.removeVertex('Rome');
 
 console.log(routes);
