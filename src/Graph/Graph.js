@@ -28,21 +28,43 @@ class Graph {
     });
     delete this.adjacencyList[vertex];
   }
+
+  DepthFirstRecursive(start) {
+    const result = [];
+    const visitedMap = {};
+
+    function dfs(vertex) {
+      if (!vertex) return;
+
+      result.push(vertex);
+      visitedMap[vertex] = true;
+
+      this.adjacencyList[vertex].forEach((item) => {
+        if (!visitedMap[item]) dfs.call(this, item);
+      });
+    }
+
+    dfs.call(this, start);
+
+    return result;
+  }
 }
 
 const routes = new Graph();
 
-routes.addVertex('London');
-routes.addVertex('Rome');
-routes.addVertex('Milan');
-routes.addVertex('Berlin');
+routes.addVertex('A');
+routes.addVertex('B');
+routes.addVertex('C');
+routes.addVertex('D');
+routes.addVertex('E');
+routes.addVertex('F');
 
-routes.addEdge('London', 'Rome');
-routes.addEdge('Rome', 'Milan');
-routes.addEdge('London', 'Milan');
+routes.addEdge('A', 'B');
+routes.addEdge('A', 'C');
+routes.addEdge('B', 'D');
+routes.addEdge('C', 'E');
+routes.addEdge('D', 'E');
+routes.addEdge('D', 'F');
+routes.addEdge('E', 'F');
 
-console.log(routes);
-
-routes.removeVertex('Rome');
-
-console.log(routes);
+console.log(routes.DepthFirstRecursive('A'));
