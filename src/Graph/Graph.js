@@ -48,6 +48,28 @@ class Graph {
 
     return result;
   }
+
+  DepthFirstIteratively(start) {
+    const stack = [];
+    const result = [];
+    const visited = {};
+
+    stack.push(start);
+    visited[start] = true;
+
+    while (stack.length) {
+      const vertex = stack.pop();
+
+      result.push(vertex);
+
+      this.adjacencyList[vertext].forEach((item) => {
+        if (!visited[item]) {
+          stack.push();
+          visited[item] = true;
+        }
+      });
+    }
+  }
 }
 
 const routes = new Graph();
