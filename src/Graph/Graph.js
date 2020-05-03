@@ -70,6 +70,30 @@ class Graph {
       });
     }
   }
+
+  BreadFirst(start) {
+    const queue = [];
+    const result = [];
+    const visited = {};
+
+    queue.push(start);
+    visited[start] = true;
+
+    while (queue.length) {
+      const vertex = queue.shift();
+
+      result.push(vertex);
+
+      this.adjacencyList[vertex].forEach((item) => {
+        if (!visited[item]) {
+          queue.push(item);
+          visited[item] = true;
+        }
+      });
+    }
+
+    return result;
+  }
 }
 
 const routes = new Graph();
@@ -89,4 +113,4 @@ routes.addEdge('D', 'E');
 routes.addEdge('D', 'F');
 routes.addEdge('E', 'F');
 
-console.log(routes.DepthFirstRecursive('A'));
+console.log(routes.BreadFirst('A'));
