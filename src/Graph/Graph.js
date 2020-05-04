@@ -69,6 +69,8 @@ class Graph {
         }
       });
     }
+
+    return result;
   }
 
   BreadFirst(start) {
