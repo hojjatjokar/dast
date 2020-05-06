@@ -101,4 +101,16 @@ class SinglyLinkedList {
 
     return false;
   }
+
+  insert(i, value) {
+    if (i < 0 || i > this.length) return;
+    if (i == 1) return this.shift(value);
+    if (i == this.length) return this.push(value);
+
+    const node = new Node(value);
+    const prev = this.get(i - 1);
+    node.next = prev.next;
+    prev.next = node;
+    this.length++;
+  }
 }
