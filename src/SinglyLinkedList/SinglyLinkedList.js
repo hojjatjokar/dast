@@ -113,4 +113,16 @@ class SinglyLinkedList {
     prev.next = node;
     this.length++;
   }
+
+  remove(i) {
+    if (i < 0 || i > this.length) return;
+
+    if (i == 1) return this.unshift();
+    if (i == this.length) return this.shift();
+
+    const prev = this.get(i - 1);
+    const node = prev.next;
+    node.next = node.next;
+    this.length--;
+  }
 }
